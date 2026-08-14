@@ -152,6 +152,7 @@ if(DKC2_BUILD_SNESRECOMP)
             GIT_SHALLOW TRUE)
         FetchContent_MakeAvailable(SDL2)
     endif()
+    set(SNESRECOMP_SDL_BACKEND SDL2)
     include(${CMAKE_CURRENT_SOURCE_DIR}/recomp-ui/recomp_ui.cmake)
     file(GLOB DKC2_SNESRECOMP_GEN_SOURCES CONFIGURE_DEPENDS
         "${DKC2_SNESRECOMP_GEN_DIR}/*.c")
@@ -258,6 +259,7 @@ if(DKC2_BUILD_SNESRECOMP)
         # Shared Dear ImGui pre-boot launcher with the North American retail
         # cover used to identify the required ROM region.
         recomp_target_launcher_ui(dkc2_snesrecomp_desktop
+            CONSOLE snes
             BOXART ${CMAKE_SOURCE_DIR}/recomp/launcher/boxart.tga)
         dkc2_enable_project_warnings(dkc2_snesrecomp_desktop)
         dkc2_enable_release_optimization(dkc2_snesrecomp_desktop)
@@ -316,6 +318,7 @@ if(DKC2_BUILD_SNESRECOMP)
             OUTPUT_NAME DKC2Recomp)
     endif()
     recomp_target_launcher_ui(dkc2_snesrecomp_sdl
+        CONSOLE snes
         BOXART ${CMAKE_SOURCE_DIR}/recomp/launcher/boxart.tga)
     dkc2_enable_project_warnings(dkc2_snesrecomp_sdl)
     dkc2_enable_release_optimization(dkc2_snesrecomp_sdl)
@@ -775,10 +778,14 @@ if(BUILD_TESTING)
         add_executable(test_snesrecomp_interp_bridge
             snesrecomp/tests/interp816/bridge_test.c
             snesrecomp/runner/src/snes/interp816.c
-            snesrecomp/runner/src/snes/interp_bridge.c)
+            snesrecomp/runner/src/snes/interp_bridge.c
+            snesrecomp/runner/src/snes/tier2_capture.c
+            snesrecomp/runner/src/snes/cx4.c)
         target_include_directories(test_snesrecomp_interp_bridge PRIVATE
             ${CMAKE_CURRENT_SOURCE_DIR}/snesrecomp/runner/src
             ${CMAKE_CURRENT_SOURCE_DIR}/snesrecomp/runner/src/snes)
+        target_compile_definitions(test_snesrecomp_interp_bridge PRIVATE
+            SNESRECOMP_TIER2_TEST=1)
         dkc2_enable_project_warnings(test_snesrecomp_interp_bridge)
         add_test(NAME snesrecomp_interp_bridge
             COMMAND test_snesrecomp_interp_bridge)

@@ -26,6 +26,8 @@ int main(void) {
   defaults.enable_audio = 1;
   defaults.audio_freq = 32040;
   defaults.volume = 100;
+  defaults.rewind_depth = 50;
+  defaults.rewind_interval = 15;
   defaults.player_src[0] = 1;
   defaults.player_src[1] = 2;
   defaults.deadzone[0] = 24;
