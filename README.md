@@ -1,3 +1,20 @@
+> [!IMPORTANT]
+> ## This repository has been superseded
+>
+> Active development of DKC2Recomp now lives at
+> **[elliotttate/DKC2Recomp](https://github.com/elliotttate/DKC2Recomp)** — please
+> go there for releases, issues, and contributions. That fork is the
+> authoritative one.
+>
+> This repo was created to teach and demonstrate static recompilation with
+> [snesrecomp](https://github.com/mstan/snesrecomp). It was never a project I
+> intended to carry end to end, so I'm genuinely glad and grateful it found a
+> successor willing to take it the rest of the way. Thank you to
+> [@elliotttate](https://github.com/elliotttate) and everyone contributing there.
+>
+> This repository is now archived and read-only. Everything below is kept as-is
+> for historical reference.
+
 # DKC2Recomp
 Note: This Recompilation is not complete and not ready to be released. Pre-Release.
 
